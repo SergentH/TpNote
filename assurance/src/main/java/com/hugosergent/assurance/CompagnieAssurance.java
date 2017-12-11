@@ -1,5 +1,6 @@
 package com.hugosergent.assurance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,10 @@ public class CompagnieAssurance {
 	List<Personne> listeClients;
 	
 
+	public CompagnieAssurance() {
+		listeClients = new ArrayList<Personne>();
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -39,7 +44,7 @@ public class CompagnieAssurance {
 		return nombreClients;
 	}
 	
-	public int obtenirNimbreDeProspects()
+	public int obtenirNombreDeProspects()
 	{
 		int nombreProspects=0;
 		for(Personne p : listeClients)
@@ -71,6 +76,39 @@ public class CompagnieAssurance {
 		}
 		
 		return nombreDeContrats;
+	}
+	
+	public Personne obtenirPlusGrosClient()
+	{
+		Personne LaBaleine=null;
+		boolean premierPassage = true;
+		int entier;
+		ComparateurClient comparerLesClients = new ComparateurClient();
+		List<Personne> listeClients = this.listeClients;
+		for(Personne p : listeClients)
+		{
+			if(premierPassage == true)
+			{
+				LaBaleine = p;
+				premierPassage = false;
+			}
+			else
+			{
+				if( p.estClient())
+				{
+					entier = comparerLesClients.compare(LaBaleine, p);
+					
+					if(entier<0)
+					{
+						LaBaleine = p;
+					}
+				}
+			}
+			
+		}
+		
+		return LaBaleine;
+		
 	}
 	
 }

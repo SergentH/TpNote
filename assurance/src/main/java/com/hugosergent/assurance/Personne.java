@@ -1,5 +1,6 @@
 package com.hugosergent.assurance;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Personne {
 	
 	public Personne(){
 		estUnClient = false;
+		contratsClient = new ArrayList<Contrat>();
+		Famille = new ArrayList<Personne>();
 	}
 	
 	public String getNom() {
